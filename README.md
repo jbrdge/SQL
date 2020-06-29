@@ -1,4 +1,4 @@
-Project 2: Curated Lego Inventory Database
+Project: Curated Lego Inventory Database
 
 Tools Used:
 PHP, JavaScript, HTML, mySQL
@@ -6,11 +6,22 @@ Mysql Bash Command Line tools
 Myphpadmin
 MAMP
 
+
+This database tool has data collected from the Lego Database files on Kaggle. https://www.kaggle.com/rtatman/lego-database
+"This dataset contains the LEGO Parts/Sets/Colors and Inventories of every official LEGO set in the Rebrickable database."
+
+I have created a site which makes SQL queries to the database which is stored using MAMP. So far, it has the functionality to sort the files and the tables in order of a column. I also have searches showing connectivity of the relational database in progress. The current relational connect displayed is the connection:
+Set Name -> Theme ID -> Theme Name. Which joins the set table and theme tables.
+
+The site also has drop down menus for accessibility and currently displays the first 20 items in all tables except the colors table.
+
 <img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-001.png">
 
 
 
 
+
+Tracking the setup process:
 Problems: phpmyadmin has an 8M limit on uploads that needed to be modified using bash since I do not have a MAMP-pro account.
 
 To access the file that needed to be modified, I went to the file: 
