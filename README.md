@@ -19,11 +19,11 @@ The site also has drop down menus for accessibility and currently displays the f
 <p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-002.png"></p>
 
 this is the schema for the relationships of the database:
+<div>
 <p><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
-
+</div>
 
 <br><br>
-<p>
 Tracking the setup process:
 
 
@@ -89,4 +89,4 @@ The other issue I encountered was that myphpadmin was not ignoring the first lin
 DELETE FROM Inventories where COLUMN_NAME='COLUMN_NAME';
 
 Or whatever the appropriate column name was.
-</p>
+
