@@ -23,6 +23,7 @@ this is the schema for the relationships of the database:
 
 
 <br><br>
+<p>
 Tracking the setup process:
 
 
@@ -35,7 +36,6 @@ upload_max_filesize = 64M
 post_max_size = 64M
 max_execution_time = 3000
 memorylimit = 512M
-
 This still had issues uploading a file that was ~10M, so I had to upload using bash.
 
 To access the localhost associated with MAMP from the terminal, I typed:
@@ -89,4 +89,4 @@ The other issue I encountered was that myphpadmin was not ignoring the first lin
 DELETE FROM Inventories where COLUMN_NAME='COLUMN_NAME';
 
 Or whatever the appropriate column name was.
-
+</p>
