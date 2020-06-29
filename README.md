@@ -1,9 +1,15 @@
 Project 2: Curated Lego Inventory Database
 
 Tools Used:
+PHP, JavaScript, HTML, mySQL
 Mysql Bash Command Line tools
 Myphpadmin
 MAMP
+
+<img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-001.png">
+
+
+
 
 Problems: phpmyadmin has an 8M limit on uploads that needed to be modified using bash since I do not have a MAMP-pro account.
 
