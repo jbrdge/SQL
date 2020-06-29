@@ -16,12 +16,16 @@ Set Name -> Theme ID -> Theme Name. Which joins the set table and theme tables.
 The site also has drop down menus for accessibility and currently displays the first 20 items in all tables except the colors table.
 
 <img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-001.png">
+<img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-002.png">
+
+this is the schema for the relationships of the database:
+<img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png">
 
 
-
-
-
+<br /><br />
 Tracking the setup process:
+
+
 Problems: phpmyadmin has an 8M limit on uploads that needed to be modified using bash since I do not have a MAMP-pro account.
 
 To access the file that needed to be modified, I went to the file: 
