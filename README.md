@@ -34,20 +34,20 @@ upload_max_filesize = 64M<br>
 post_max_size = 64M<br>
 max_execution_time = 3000<br>
 memorylimit = 512M<br>
-This still had issues uploading a file that was ~10M, so I had to upload using bash.
+This still had issues uploading a file that was ~10M, so I had to upload using bash.<br>
 
-To access the localhost associated with MAMP from the terminal, I typed:
-/Applications/MAMP/Library/bin/mysql --host=localhost -u root -p
+To access the localhost associated with MAMP from the terminal, I typed:<br>
+/Applications/MAMP/Library/bin/mysql --host=localhost -u root -p<br>
 
-Before uploading the file, I needed to contruct a table with column labels in the command line;
-CREATE TABLE InventoryP ( inventory_id INT, part_num VARCHAR(16), color_id INT, quantity INT, is_spare VARCHAR(1));
+Before uploading the file, I needed to contruct a table with column labels in the command line;<br>
+CREATE TABLE InventoryP ( inventory_id INT, part_num VARCHAR(16), color_id INT, quantity INT, is_spare VARCHAR(1));<br>
 
-Once switching to my intended database, I used the command:
-LOAD DATA INFILE '…path to file…/inventory_parts.csv' INTO TABLE tablename FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+Once switching to my intended database, I used the command:<br>
+LOAD DATA INFILE '…path to file…/inventory_parts.csv' INTO TABLE tablename FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;<br>
 
-But, I received the following access error response presumably from MAMP:
+But, I received the following access error response presumably from MAMP:<br>
 
-ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement<br>
 
 to check the access, type:<br>
 SELECT @@GLOBAL.secure_file_priv;<br>
@@ -60,17 +60,17 @@ In my case, at this point the response was:<br>
 +---------------------------+<br>
 1 row in set (0.00 sec)<br>
 
-So I exited, stopped the server services and needed to add a file to ~ using the command: 
+So I exited, stopped the server services and needed to add a file to ~ using the command: <br>
 
-nano ~/.my.cnf
+nano ~/.my.cnf<br>
 
-And added the lines:
+And added the lines:<br>
 
-[mysqld_safe]
-[mysqld]
-secure_file_priv="/Users/me/"
+[mysqld_safe]<br>
+[mysqld]<br>
+secure_file_priv="/Users/me/"<br>
 
-Checking my access:
+Checking my access:<br>
 
 mysql> SELECT @@GLOBAL.secure_file_priv;<br>
 +---------------------------+<br>
@@ -80,11 +80,11 @@ mysql> SELECT @@GLOBAL.secure_file_priv;<br>
 +---------------------------+<br>
 1 row in set (0.00 sec)<br>
 
-Now, I was able to upload my file successfully.
+Now, I was able to upload my file successfully.<br>
 
-The other issue I encountered was that myphpadmin was not ignoring the first line in the csv files and was including the header as a row. I manually edited the columns to the corresponding names using myphpadmin. Then in the terminal, I deleted the rows with
+The other issue I encountered was that myphpadmin was not ignoring the first line in the csv files and was including the header as a row. I manually edited the columns to the corresponding names using myphpadmin. Then in the terminal, I deleted the rows with<br>
 
-DELETE FROM Inventories where COLUMN_NAME='COLUMN_NAME';
+DELETE FROM Inventories where COLUMN_NAME='COLUMN_NAME';<br>
 
-Or whatever the appropriate column name was.
+Or whatever the appropriate column name was.<br>
 
