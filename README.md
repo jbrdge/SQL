@@ -19,9 +19,8 @@ The site also has drop down menus for accessibility and currently displays the f
 <p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-002.png"></p>
 
 this is the schema for the relationships of the database:
-<div>
-<p><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
-</div>
+
+<p align="center"><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
 
 <br><br>
 Tracking the setup process:
