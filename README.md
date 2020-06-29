@@ -22,8 +22,7 @@ this is the schema for the relationships of the database:
 
 <p width=100%><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
+<hr>
 Tracking the setup process:
 
 Problems: phpmyadmin has an 8M limit on uploads that needed to be modified using bash since I do not have a MAMP-pro account.
