@@ -23,7 +23,7 @@ this is the schema for the relationships of the database:
 <p align="center"><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
 
 <br><br>
-<p>
+<p align="left">
 Tracking the setup process:
 </p>
 
