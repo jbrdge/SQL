@@ -15,11 +15,11 @@ Set Name -> Theme ID -> Theme Name. Which joins the set table and theme tables.
 
 The site also has drop down menus for accessibility and currently displays the first 20 items in all tables except the colors table.
 
-<img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-001.png">
-<img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-002.png">
+<p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-001.png"></p>
+<p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-002.png"></p>
 
 this is the schema for the relationships of the database:
-<img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png">
+<p><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
 
 
 <br /><br />
