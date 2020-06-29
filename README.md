@@ -22,18 +22,18 @@ this is the schema for the relationships of the database:
 
 <p width=100%><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
 
-<hr>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 Tracking the setup process:
 
 Problems: phpmyadmin has an 8M limit on uploads that needed to be modified using bash since I do not have a MAMP-pro account.
 
 To access the file that needed to be modified, I went to the file: 
-~/Applications/MAMP/bin/php/php7.4.2/conf/php.ini
-and I manually edited the following to: 
-upload_max_filesize = 64M
-post_max_size = 64M
-max_execution_time = 3000
-memorylimit = 512M
+~/Applications/MAMP/bin/php/php7.4.2/conf/php.ini<br>
+and I manually edited the following to: <br>
+upload_max_filesize = 64M<br>
+post_max_size = 64M<br>
+max_execution_time = 3000<br>
+memorylimit = 512M<br>
 This still had issues uploading a file that was ~10M, so I had to upload using bash.
 
 To access the localhost associated with MAMP from the terminal, I typed:
@@ -53,12 +53,12 @@ to check the access, type:
 SELECT @@GLOBAL.secure_file_priv;
 
 In my case, at this point the response was:
-+---------------------------+
-| @@GLOBAL.secure_file_priv |
-+---------------------------+
-| NULL                      |
-+---------------------------+
-1 row in set (0.00 sec)
++---------------------------+<br>
+| @@GLOBAL.secure_file_priv |<br>
++---------------------------+<br>
+| NULL                      |<br>
++---------------------------+<br>
+1 row in set (0.00 sec)<br>
 
 So I exited, stopped the server services and needed to add a file to ~ using the command: 
 
@@ -72,13 +72,13 @@ secure_file_priv="/Users/me/"
 
 Checking my access:
 
-mysql> SELECT @@GLOBAL.secure_file_priv;
-+---------------------------+
-| @@GLOBAL.secure_file_priv |
-+---------------------------+
-| /Users/me/                |
-+---------------------------+
-1 row in set (0.00 sec)
+mysql> SELECT @@GLOBAL.secure_file_priv;<br>
++---------------------------+<br>
+| @@GLOBAL.secure_file_priv |<br>
++---------------------------+<br>
+| /Users/me/                |<br>
++---------------------------+<br>
+1 row in set (0.00 sec)<br>
 
 Now, I was able to upload my file successfully.
 
