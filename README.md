@@ -27,7 +27,7 @@ Tracking the setup process:
 
 Problems: phpmyadmin has an 8M limit on uploads that needed to be modified using bash since I do not have a MAMP-pro account.
 
-To access the file that needed to be modified, I went to the file: 
+To access the file that needed to be modified, I went to the file: <br>
 ~/Applications/MAMP/bin/php/php7.4.2/conf/php.ini<br>
 and I manually edited the following to: <br>
 upload_max_filesize = 64M<br>
@@ -49,10 +49,10 @@ But, I received the following access error response presumably from MAMP:
 
 ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
 
-to check the access, type:
-SELECT @@GLOBAL.secure_file_priv;
+to check the access, type:<br>
+SELECT @@GLOBAL.secure_file_priv;<br>
 
-In my case, at this point the response was:
+In my case, at this point the response was:<br>
 +---------------------------+<br>
 | @@GLOBAL.secure_file_priv |<br>
 +---------------------------+<br>
