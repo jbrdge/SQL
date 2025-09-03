@@ -1,90 +1,119 @@
-Project: Curated Lego Inventory Database
+# Project: Curated LEGO Inventory Database
 
-Tools Used:
-PHP, JavaScript, HTML, mySQL
-Mysql Bash Command Line tools
-Myphpadmin
-MAMP
+## Tools Used
+- PHP, JavaScript, HTML  
+- MySQL (via MAMP)  
+- MySQL Bash Command Line tools  
+- phpMyAdmin  
 
+---
 
-This database tool has data collected from the Lego Database files on Kaggle. https://www.kaggle.com/rtatman/lego-database
-"This dataset contains the LEGO Parts/Sets/Colors and Inventories of every official LEGO set in the Rebrickable database."
+## Overview
 
-I have created a site which makes SQL queries to the database which is stored using MAMP. So far, it has the functionality to sort the files and the tables in order of a column. I also have searches showing connectivity of the relational database in progress. The current relational connect displayed is the connection:
-Set Name -> Theme ID -> Theme Name. Which joins the set table and theme tables.
+This project builds a **curated LEGO inventory database** using data collected from the [LEGO Database on Kaggle](https://www.kaggle.com/rtatman/lego-database):  
 
-The site also has drop down menus for accessibility and currently displays the first 20 items in all tables except the colors table.
+> *“This dataset contains the LEGO Parts/Sets/Colors and Inventories of every official LEGO set in the Rebrickable database.”*  
 
-<p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-001.png"></p>
-<p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-002.png"></p>
+The database is hosted locally in **MAMP** and accessed through a custom PHP/HTML/JS front-end.  
 
-this is the schema for the relationships of the database:
+**Current functionality includes:**
+- Sorting tables by column values  
+- Displaying relational connectivity (e.g. `Set Name → Theme ID → Theme Name`)  
+- Drop-down menus for navigation  
+- Default views limited to the first 20 rows (except the `colors` table)  
 
-<p width=100%><img align="left" src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png"></p>
+---
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-Tracking the setup process:
+## Screenshots
 
-Problems: phpmyadmin has an 8M limit on uploads that needed to be modified using bash since I do not have a MAMP-pro account.
+<p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-001.png" width="45%"></p>
+<p><img align="left" src="https://raw.githubusercontent.com/jbrdge/PHP/master/PHP-002.png" width="45%"></p>
 
-To access the file that needed to be modified, I went to the file: <br>
-~/Applications/MAMP/bin/php/php7.4.2/conf/php.ini<br>
-and I manually edited the following to: <br>
-upload_max_filesize = 64M<br>
-post_max_size = 64M<br>
-max_execution_time = 3000<br>
-memorylimit = 512M<br>
-This still had issues uploading a file that was ~10M, so I had to upload using bash.<br>
+<br clear="both"/>
 
-To access the localhost associated with MAMP from the terminal, I typed:<br>
-/Applications/MAMP/Library/bin/mysql --host=localhost -u root -p<br>
+### Database Schema
 
-Before uploading the file, I needed to contruct a table with column labels in the command line;<br>
-CREATE TABLE InventoryP ( inventory_id INT, part_num VARCHAR(16), color_id INT, quantity INT, is_spare VARCHAR(1));<br>
+<p><img src="https://github.com/jbrdge/PHP/blob/master/Lego%20SQL%20DATABASE/LegoDatabase/1599/downloads_schema.png" width="100%"></p>
 
-Once switching to my intended database, I used the command:<br>
-LOAD DATA INFILE '…path to file…/inventory_parts.csv' INTO TABLE tablename FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;<br>
+---
 
-But, I received the following access error response presumably from MAMP:<br>
+## Setup Notes
 
-ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement<br>
+### Increasing Upload Limits in phpMyAdmin
+By default, phpMyAdmin restricts uploads to **8 MB**. To allow larger CSVs, edit the `php.ini` file:  
 
-to check the access, type:<br>
-SELECT @@GLOBAL.secure_file_priv;<br>
+```ini
+upload_max_filesize = 64M
+post_max_size       = 64M
+max_execution_time  = 3000
+memory_limit        = 512M
+```
 
-In my case, at this point the response was:<br>
-+---------------------------+<br>
-| @@GLOBAL.secure_file_priv |<br>
-+---------------------------+<br>
-| NULL                      |<br>
-+---------------------------+<br>
-1 row in set (0.00 sec)<br>
+Even after this, large (~10 MB) files still had issues in phpMyAdmin, so I switched to the MySQL CLI.
 
-So I exited, stopped the server services and needed to add a file to ~ using the command: <br>
+---
 
-nano ~/.my.cnf<br>
+## Accessing MySQL via CLI
+```bash
+/Applications/MAMP/Library/bin/mysql --host=localhost -u root -p
+```
 
-And added the lines:<br>
+## Creating a Table
+```sql
+CREATE TABLE InventoryP (
+  inventory_id INT,
+  part_num     VARCHAR(16),
+  color_id     INT,
+  quantity     INT,
+  is_spare     VARCHAR(1)
+);
+```
 
-[mysqld_safe]<br>
-[mysqld]<br>
-secure_file_priv="/Users/me/"<br>
+## Importing Data
+```sql
+LOAD DATA INFILE '/path/to/inventory_parts.csv'
+INTO TABLE InventoryP
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+```
 
-Checking my access:<br>
+## Fixing `secure_file_priv` Restriction
+Error encountered:
+```vbnet
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option
+```
+Check restriction:
+```sql
+SELECT @@GLOBAL.secure_file_priv;
+```
+If the result is `NULL`, configure MySQL to allow imports from a safe directory. Create/edit `~/.my.cnf`:
+```ini
+[mysqld_safe]
+[mysqld]
+secure_file_priv="/Users/me/"
+```
+Restart MySQL and confirm:
+```sql
+SELECT @@GLOBAL.secure_file_priv;
+```
+Result:
+```bash
+/Users/me/
+```
 
-mysql> SELECT @@GLOBAL.secure_file_priv;<br>
-+---------------------------+<br>
-| @@GLOBAL.secure_file_priv |<br>
-+---------------------------+<br>
-| /Users/me/                |<br>
-+---------------------------+<br>
-1 row in set (0.00 sec)<br>
+✅ CSV upload now works.
+---
+## Cleaning Up Header Rows
+```sql
+DELETE FROM InventoryP WHERE part_num = 'part_num';
+```
+(Adjust column name and value as needed.)
 
-Now, I was able to upload my file successfully.<br>
-
-The other issue I encountered was that myphpadmin was not ignoring the first line in the csv files and was including the header as a row. I manually edited the columns to the corresponding names using myphpadmin. Then in the terminal, I deleted the rows with<br>
-
-DELETE FROM Inventories where COLUMN_NAME='COLUMN_NAME';<br>
-
-Or whatever the appropriate column name was.<br>
+## Key Takeaways
+- Increased PHP upload size to support large CSV files
+- Used MySQL CLI to bypass phpMyAdmin limits
+- Adjusted secure_file_priv to enable local file imports
+- Cleaned data to ensure correct table structure
 
